@@ -1,0 +1,18 @@
+.navbar-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-list > li {
+    display: inline-block;
+}
+
+.right-list-navbar {
+    float: right;
+    margin-right: 25px;
+}
+
+#navbar{
+    margin-bottom: 15px;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "projet_preparatoire",
+  "version": "1.0.0",
+  "description": "Projet preparatoire LINFO1212",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emile Villette",
+  "license": "ISC",
+  "dependencies": {
+    "sequelize": "^6.23.1"
+  }
+}

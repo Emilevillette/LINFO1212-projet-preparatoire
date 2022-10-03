@@ -11,12 +11,23 @@
 <body>
 <script>loadNavbar()</script><!-- loads the navbar -->
 <div id="navbar"></div>
-<h2>Signaler nouveau incident</h2>
-Description <br>
-<input type="text"><br>
-Adresse <br>
-<input type="text"> <br>
-<input type="button" value="soumettre">
+<div class="mt-3 mb-2 ms-3">
+    <h2>Signaler nouvel incident</h2>
+</div>
+<form>
+    <div class="mb-3 ms-4 mt-2 col-8">
+        <label for="description_input" class="form-label">Description</label>
+        <textarea class="form-control" id="description_input"
+                  placeholder="Entrez ici une description de l'incident" rows="4"></textarea>
+    </div>
+    <div class="mb-3 ms-4 mt-2 col-8">
+        <label for="address_input">Adresse</label>
+        <input type="text" class="form-control" id="address_input" placeholder="Rue de la Loi 1, 1000 Bruxelles">
+    </div>
+    <div class="mb-3 ms-4 mt-2 col-8">
+        <input class="btn btn-primary" type="button" value="Soumettre">
+    </div>
+</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>

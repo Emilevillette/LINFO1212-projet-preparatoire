@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,34 +11,38 @@
 <body>
 <script>loadContent("navbar", "navbar.html")</script><!-- loads the navbar -->
 <div id="navbar"></div>
-<div>
-    <a href="incident_input.html" id="new_incident">Lien pour ajouter un incident</a>
-    <label id="today">Jour actuel: <input type="date"></label>
+<div class="mt-3 ms-4 me-4 d-flex justify-content-between">
+    <a href="incident_input.html" class="btn btn-sm btn-outline-primary">+ Ajouter un incident</a>
+    <label id="today">Choisir jour: <input type="date" value="2022-09-15"></label>
 </div>
-<table class="table table-striped">
-    <thead class="table-dark">
-    <tr>
-        <th scope="col">Description</th>
-        <th scope="col">Adresse</th>
-        <th scope="col">Rapporté par</th>
-        <th scope="col">Date</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>TBD</td>
-        <td>TBD</td>
-        <td>TBD</td>
-        <td>TBD</td>
-    </tr>
-    <tr>
-        <td>TBD</td>
-        <td>TBD</td>
-        <td>TBD</td>
-        <td>TBD</td>
-    </tr>
-    </tbody>
-</table>
+<div class="mt-3 mb-3 ms-4 me-4">
+    <table class="table table-striped table-bordered table-hover rounded rounded-3 overflow-hidden">
+        <thead class="table-dark">
+        <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Rapporté par</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>TBD</td>
+            <td>TBD</td>
+            <td>TBD</td>
+            <td>TBD</td>
+        </tr>
+        <tr>
+            <td>TBD</td>
+            <td>TBD</td>
+            <td>TBD</td>
+            <td>TBD</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>

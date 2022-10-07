@@ -7,7 +7,9 @@
 Emile VILLETTE, Téo POUCET, Arthur LOUETTE
 
 ### How to run the project
-To run the project (without node for now), run: `npx http-server` and navigate to `src`
+To install the required packages: `npm install`
+
+To run the project run: `node app.js`
 
 ### Notes
 
@@ -40,12 +42,12 @@ Le répertoire `specifications` contient les spécifications en format Gherkin d
     |-- img
     |   |-- logo.png
     |   `-- placeholder.png
-    |-- incident_input.html
-    |-- index.html
+    |-- incident_input.ejs
+    |-- index.ejs
     |-- js
     |   `-- insert_code.js
-    |-- login.html
-    `-- navbar.html
+    |-- login.ejs
+    `-- navbar.ejs
 
 4 directories, 12 files
 ```

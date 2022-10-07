@@ -1,16 +1,19 @@
-const http = require('http');
+var express = require('express');
+var app = express();
 
-const hostname = '127.0.0.1';
-const port = 3000;
+app.set('view engine', 'ejs');
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World');
+app.get('/', function (req, res) {
+    res.render('pages/index.ejs');
 });
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+app.get('/login', function (req, res) {
+    res.render('pages/login.ejs');
 });
 
-//https://nodejs.org/en/docs/guides/getting-started-guide/
+app.get('/incident_input', function (req, res) {
+    res.render('pages/incident_input.ejs');
+});
+
+app.use(express.static('content'));
+app.listen(8080);

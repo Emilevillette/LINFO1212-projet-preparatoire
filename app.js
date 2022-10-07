@@ -20,5 +20,11 @@ app.get('/incident_input', function (req, res) {
 
 app.use(express.static(public_dir));
 
+app.get('*', function (req,res) {
+    res.status(404).send("La page n'existe pas");
+});
+
+
+
 app.use(express.static('content'));
 app.listen(8080);

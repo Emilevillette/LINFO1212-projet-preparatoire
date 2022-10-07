@@ -9,7 +9,7 @@ Emile VILLETTE, Téo POUCET, Arthur LOUETTE
 ### How to run the project
 To install the required packages: `npm install`
 
-To run the project run: `node app.js`
+To run the project run: `node app.js` and head to `http://127.0.0.1:8080/` 
 
 ### Notes
 

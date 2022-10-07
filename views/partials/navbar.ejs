@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img src="../../src/img/logo.png" width="40" height="32" alt="Logo">
+            <img src="/img/logo.png" width="40" height="32" alt="Logo">
             Incident Reports
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -20,9 +20,9 @@
                     <a class="nav-link active" aria-current="page" href="/login">Se connecter</a>
                 </li>
             </ul>
-            <form class="d-flex">
+            <form class="d-flex" method="get">
                 <input class="form-control me-2" type="search" placeholder="Trouver un incident"
-                       aria-label="Search">
+                       aria-label="Search" name="search">
                 <button class="btn btn-outline-success" type="submit">Rechercher</button>
             </form>
         </div>

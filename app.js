@@ -6,6 +6,14 @@ var public_dir = path.join(__dirname, 'public');
 
 app.set('view engine', 'ejs');
 
+app.post('/login_account', function (req, res, next) {
+
+});
+
+app.post('/create_account', function (req, res, next) {
+
+});
+
 app.get('/', function (req, res) {
     res.render('pages/index.ejs');
 });
@@ -20,10 +28,9 @@ app.get('/incident_input', function (req, res) {
 
 app.use(express.static(public_dir));
 
-app.get('*', function (req,res) {
+app.get('*', function (req, res) {
     res.status(404).send("La page n'existe pas");
 });
-
 
 
 app.use(express.static('content'));

@@ -4,6 +4,7 @@ var app = express();
 
 const db = require("./config/database");
 const IncidentModel = require("./models/incidents");
+const UserModel = require("./models/users");
 
 var public_dir = path.join(__dirname, 'public');
 
@@ -17,7 +18,11 @@ const initDB = async () => {
 
         // Synchronize model
         IncidentModel.sync({
-            alter:true,
+            alter: true,
+        });
+
+        UserModel.sync({
+            alter: true,
         });
 
     } catch (error) {

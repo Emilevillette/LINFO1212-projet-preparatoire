@@ -17,20 +17,23 @@ const initDB = async () => {
         console.log('Connection has been established successfully.');
 
         // Synchronize model
-        IncidentModel.sync({
+        await IncidentModel.sync({
             alter: true,
         });
 
-        UserModel.sync({
+        await UserModel.sync({
             alter: true,
         });
+
 
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }
 }
 
-initDB();
+initDB().then(() => {
+    console.log("Database successfully initiated");
+});
 
 app.post('/login_account', function (req, res, next) {
 

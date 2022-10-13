@@ -21,10 +21,12 @@ const initDB = async () => {
 initDB();
 
 app.post('/login_account', function (req, res, next) {
-
 });
 
 app.post('/create_account', function (req, res, next) {
+});
+
+app.post('/report_incident', function(req,res,next) {
 
 });
 

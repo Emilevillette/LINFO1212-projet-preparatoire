@@ -3,6 +3,8 @@ var path = require('path');
 var app = express();
 
 const db = require("./config/database");
+const IncidentModel = require("./models/incidents");
+const UserModel = require("./models/users");
 
 var public_dir = path.join(__dirname, 'public');
 
@@ -13,12 +15,25 @@ const initDB = async () => {
     try {
         await db.authenticate();
         console.log('Connection has been established successfully.');
+
+        // Synchronize model
+        await IncidentModel.sync({
+            alter: true,
+        });
+
+        await UserModel.sync({
+            alter: true,
+        });
+
+
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }
 }
 
-initDB();
+initDB().then(() => {
+    console.log("Database successfully initiated");
+});
 
 app.post('/login_account', function (req, res, next) {
 });
@@ -53,5 +68,3 @@ app.use(express.static('content'));
 app.listen(8080, () => {
     console.log("Server up at http://localhost:8080/")
 });
-
-

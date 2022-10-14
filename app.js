@@ -24,8 +24,6 @@ const initDB = async () => {
         await UserModel.sync({
             alter: true,
         });
-
-
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }
@@ -41,8 +39,7 @@ app.post('/login_account', function (req, res, next) {
 app.post('/create_account', function (req, res, next) {
 });
 
-app.post('/report_incident', function(req,res,next) {
-
+app.post('/report_incident', function (req, res, next) {
 });
 
 app.get('/', function (req, res) {

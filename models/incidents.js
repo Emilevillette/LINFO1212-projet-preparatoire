@@ -1,6 +1,7 @@
 const {Sequelize, DataTypes} = require("sequelize");
 
 const sequelize = require("../config/database");
+const Users = require("./users");
 
 const Incidents = sequelize.define(
     "incidents", {
@@ -9,6 +10,9 @@ const Incidents = sequelize.define(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
             allowNull: false,
+            validate: {
+                isUUID: 4,
+            }
         },
         description: {
             type: DataTypes.STRING,
@@ -21,6 +25,10 @@ const Incidents = sequelize.define(
         submitted_by: {
             type: DataTypes.UUID,
             allowNull: false,
+            references: {
+                model: Users,
+                id: 'key',
+            }
         },
         submitted_at: {
             type: DataTypes.DATE,

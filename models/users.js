@@ -1,6 +1,7 @@
 const {Sequelize, DataTypes} = require("sequelize");
 
 const sequelize = require("../config/database");
+const Incidents = require("./incidents");
 
 const Users = sequelize.define("users", {
     id: {
@@ -8,21 +9,32 @@ const Users = sequelize.define("users", {
         allowNull: false,
         primaryKey: true,
     },
-    submitted_by: {
-        type: DataTypes.UUID,
-        allowNull: false,
-    },
-    submission_date: {
-        type: DataTypes.DATE,
-        allowNUll: false,
-    },
-    description: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-    },
-    address: {
+    password_hash: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            isEmail: true,
+        }
+    },
+    full_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    incidents: {
+        type: DataTypes.UUID,
+        references: {
+            model: Incidents,
+            key: 'id',
+        },
+        allowList: true,
     }
 
 }, {});

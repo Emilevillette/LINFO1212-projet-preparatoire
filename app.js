@@ -2,7 +2,7 @@ var express = require('express');
 var bodyparser = require('body-parser');
 var path = require('path');
 var app = express();
-app.use(bodyparser.urlencoded({ extended: false}));
+app.use(bodyparser.urlencoded({extended: false}));
 
 const db = require("./config/database");
 const IncidentModel = require("./models/incidents");
@@ -38,7 +38,8 @@ initDB().then(() => {
 app.post('/login_account', function (req, res, next) {
     var existing_username = req.body.existing_username;
     var existing_password = req.body.existing_password;
-    console.log("username : "+existing_username+" password : "+existing_password);
+    console.log("username : " + existing_username + " password : " + existing_password);
+    res.sendStatus(200);
 });
 
 app.post('/create_account', function (req, res, next) {

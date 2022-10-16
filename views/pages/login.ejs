@@ -30,6 +30,18 @@
                 });
             });
         });
+        $(document).ready(function(){
+            var user,pass,name,email;
+            $("#creating").click(function(){
+                var user = $("#creating_username").val();
+                var pass = $("#creating_password").val();
+                var name = $("#creating_name").val();
+                var email = $("#creating_email").val();
+                $.post("http://localhost:8080/login",{creating_username: user, creating_password: pass,creating_name: name, creating_email:email}, function(data){
+
+                });               
+            });
+        });
   </script>
     <div class="mb-3 ms-4 mt-2 w-25">
         <label class="form-label" for="existing_username">Nom d'utilisateur</label>

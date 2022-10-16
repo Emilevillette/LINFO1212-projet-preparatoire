@@ -43,6 +43,12 @@ app.post('/login_account', function (req, res, next) {
 });
 
 app.post('/create_account', function (req, res, next) {
+    var creating_username = req.body.creating_username;
+    var creating_password = req.body.creating_password;
+    var creating_name = req.body.creating_name;
+    var creating_email = req.body.creating_email;
+    console.log("username : " + creating_username + "password : "+ creating_password + "real name : "+ creating_name + "email : "+ creating_email);
+    res.sendStatus(200);
 });
 
 app.post('/report_incident', function (req, res, next) {

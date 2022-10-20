@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-10-20T14:06:21.560Z" agent="5.0 (X11)" etag="PwyjBVLIEkMqxnxUm61t" version="20.4.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-10-20T14:16:32.865Z" agent="5.0 (X11)" etag="dLt-9wRBj0y8YIni58wH" version="20.4.1" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="1053" dy="537" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -264,11 +264,8 @@
         <mxCell id="YhynZKO4u3EwaHUzb0i7-38" value="" style="group" vertex="1" connectable="0" parent="ySnOF4zIyVid2abpOL5g-11">
           <mxGeometry x="-60" y="135" width="140" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="YhynZKO4u3EwaHUzb0i7-39" value="is_moderator" style="ellipse;whiteSpace=wrap;html=1;fontSize=17;dashed=1;" vertex="1" parent="YhynZKO4u3EwaHUzb0i7-38">
+        <mxCell id="YhynZKO4u3EwaHUzb0i7-39" value="lot_number" style="ellipse;whiteSpace=wrap;html=1;fontSize=17;dashed=1;" vertex="1" parent="YhynZKO4u3EwaHUzb0i7-38">
           <mxGeometry width="140" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="YhynZKO4u3EwaHUzb0i7-40" value="{true, false}" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="YhynZKO4u3EwaHUzb0i7-38">
-          <mxGeometry x="25" y="80" width="90" height="30" as="geometry" />
         </mxCell>
         <mxCell id="ySnOF4zIyVid2abpOL5g-20" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=oval;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startArrow=none;startFill=0;" parent="1" source="CTEkizjnetQ3qyJkGGKz-4" target="ySnOF4zIyVid2abpOL5g-8" edge="1">
           <mxGeometry relative="1" as="geometry">

@@ -30,6 +30,7 @@
                 });
             });
         });
+
   </script>
     <div class="mb-3 ms-4 mt-2 w-25">
         <label class="form-label" for="existing_username">Nom d'utilisateur</label>
@@ -50,24 +51,39 @@
     <h2>Créer un nouveau compte</h2>
 </div>
 <form method="post" action="/create_account">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">  </script>
+    <script>
+        $(document).ready(function(){
+            var user,pass,name,email;
+            $("#creating").click(function(){
+                var user = $("#new_username").val();
+                var pass = $("#new_password").val();
+                var name = $("#new_fullname").val();
+                var email = $("#new_email").val();
+                $.post("http://localhost:8080/create_account",{new_username: user , new_password: pass ,new_fullname: name , new_email: email}, function(data){
+
+                });               
+            });
+        });
+    </script>
     <div class="mb-3 ms-4 mt-2 w-25">
         <label class="form-label" for="new_username">Nom de l'utilisateur</label>
-        <input type="text" class="form-control" id="new_username" name="new_username"
+        <input type="text" class="form-control" id="creating" name="new_username"
                placeholder="Exemple: JeanDupont453" required>
     </div>
     <div class="mb-3 ms-4 mt-2 w-25">
         <label class="form-label" for="new_password">Mot de passe</label>
-        <input type="password" class="form-control" id="new_password" name="new_password"
+        <input type="password" class="form-control" id="creating" name="new_password"
                placeholder="Choisir un mot de passe" required>
     </div>
     <div class="mb-3 ms-4 mt-2 w-25">
         <label class="form-label" for="new_fullname">Nom complet</label>
-        <input type="text" class="form-control" id="new_fullname" name="new_fullname"
+        <input type="text" class="form-control" id="creating" name="new_fullname"
                placeholder="Exemple: Jean Dupont" required>
     </div>
     <div class="mb-3 ms-4 mt-2 w-25">
         <label class="form-label" for="new_email">Adresse e-mail</label>
-        <input type="email" class="form-control" id="new_email" name="new_email"
+        <input type="email" class="form-control" id="creating" name="new_email"
                placeholder="Exemple: Jeandupont@mail.com" required>
     </div>
     <div class="mb-3 ms-4 mt-2 w-25">

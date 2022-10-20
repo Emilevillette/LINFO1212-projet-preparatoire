@@ -27,7 +27,7 @@ const Incidents = sequelize.define(
             allowNull: false,
             references: {
                 model: Users,
-                id: 'key',
+                id: 'email',
             }
         },
         submitted_at: {

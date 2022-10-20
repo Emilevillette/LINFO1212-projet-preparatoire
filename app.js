@@ -19,13 +19,9 @@ const initDB = async () => {
         console.log('Connection has been established successfully.');
 
         // Synchronize model
-        await IncidentModel.sync({
-            alter: true,
-        });
-
-        await UserModel.sync({
-            alter: true,
-        });
+        await db.sync({
+            alter:true,
+        })
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }

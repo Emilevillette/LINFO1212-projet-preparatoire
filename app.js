@@ -19,6 +19,8 @@ const initDB = async () => {
         console.log('Connection has been established successfully.');
 
         // Synchronize model
+        // Users can have relations with multiple incidents
+        UserModel.hasMany(IncidentModel);
         await db.sync({
             alter:true,
         })

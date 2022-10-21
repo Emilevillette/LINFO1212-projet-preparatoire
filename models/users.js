@@ -10,7 +10,7 @@ const Users = sequelize.define("users", {
         validate: {
             isEmail: true,
         },
-        primaryKey:true,
+        primaryKey: true,
     },
     password_hash: {
         type: DataTypes.STRING,
@@ -23,16 +23,7 @@ const Users = sequelize.define("users", {
     full_name: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    incidents: {
-        type: DataTypes.UUID,
-        references: {
-            model: Incidents,
-            key: 'id',
-        },
-        allowList: true,
     }
-
 }, {});
 
 module.exports = Users;

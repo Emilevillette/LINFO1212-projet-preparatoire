@@ -1,7 +1,6 @@
 const {Sequelize, DataTypes} = require("sequelize");
 
 const sequelize = require("../config/database");
-const Incidents = require("./incidents");
 
 const Users = sequelize.define("users", {
     email: {

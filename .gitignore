@@ -130,3 +130,6 @@ dist
 .pnp.*
 
 .idea
+
+# DO NOT COMMIT THE DATABASE
+preparatoryprojet.sqlite

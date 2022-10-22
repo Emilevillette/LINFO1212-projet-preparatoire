@@ -21,6 +21,7 @@ const initDB = async () => {
         // Synchronize model
         // Users can have relations with multiple incidents
         UserModel.hasMany(IncidentModel);
+        IncidentModel.belongsTo(UserModel);
         await db.sync({
             alter:true,
         })

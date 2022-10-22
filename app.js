@@ -35,17 +35,18 @@ initDB().then(() => {
 });
 
 app.post('/login_account', function (req, res, next) {
-    var existing_username = req.body.existing_username;
-    var existing_password = req.body.existing_password;
+    const existing_username = req.body.existing_username;
+    const existing_password = req.body.existing_password;
     console.log("username : " + existing_username + " password : " + existing_password);
     res.sendStatus(200);
 });
 
 app.post('/create_account', function (req, res, next) {
-    var creating_username = req.body.new_username;
-    var creating_password = req.body.new_password;
-    var creating_name = req.body.new_fullname;
-    var creating_email = req.body.new_email;
+    const creating_username = req.body.new_username;
+    const creating_password = req.body.new_password;
+    const creating_name = req.body.new_fullname;
+    const creating_email = req.body.new_email;
+
     console.log("username : " + creating_username + " password : "+ creating_password + " real name : "+ creating_name + " email : "+ creating_email);
     res.sendStatus(200);
 });

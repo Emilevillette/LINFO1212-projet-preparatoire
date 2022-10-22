@@ -132,4 +132,4 @@ dist
 .idea
 
 # DO NOT COMMIT THE DATABASE
-preparatoryprojet.sqlite
+preparatoryproject.sqlite

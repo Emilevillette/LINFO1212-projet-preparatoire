@@ -37,7 +37,7 @@ app.post('/login_account', function (req, res, next) {
     var existing_username = req.body.existing_username;
     var existing_password = req.body.existing_password;
     console.log("username : " + existing_username + " password : " + existing_password);
-    res.sendStatus(200);
+    res.sendStatus(200).send('Successfully connected !');
 });
 
 app.post('/create_account', function (req, res, next) {
@@ -46,7 +46,7 @@ app.post('/create_account', function (req, res, next) {
     var creating_name = req.body.new_fullname;
     var creating_email = req.body.new_email;
     console.log("username : " + creating_username + " password : "+ creating_password + " real name : "+ creating_name + " email : "+ creating_email);
-    res.sendStatus(200);
+    res.sendStatus(200).send('Account successfully created !');
 });
 
 app.post('/report_incident', function (req, res, next) {

@@ -76,6 +76,10 @@ app.get('/incident_input', function (req, res) {
     res.render('pages/incident_input.ejs');
 });
 
+app.get('/contact',function(req,res){
+    res.render('pages/contact.ejs');
+});
+
 app.use(express.static(public_dir));
 
 app.get('*', function (req, res) {

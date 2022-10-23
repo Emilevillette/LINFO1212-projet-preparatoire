@@ -36,20 +36,29 @@ initDB().then(() => {
     console.log("Database successfully initiated");
 });
 
-app.post('/login_account', function (req, res, next) {
-    var existing_username = req.body.existing_username;
-    var existing_password = req.body.existing_password;
-    console.log("username : " + existing_username + " password : " + existing_password);
-    res.sendStatus(200).send('Successfully connected !');
+app.post('/login_account', urlencodedParser, function (req, res, next) {
+    const existing_username = req.body.existing_username;
+    const existing_password = req.body.existing_password;
+    res.sendStatus(200);
 });
 
-app.post('/create_account', function (req, res, next) {
-    var creating_username = req.body.new_username;
-    var creating_password = req.body.new_password;
-    var creating_name = req.body.new_fullname;
-    var creating_email = req.body.new_email;
-    console.log("username : " + creating_username + " password : "+ creating_password + " real name : "+ creating_name + " email : "+ creating_email);
-    res.sendStatus(200).send('Account successfully created !');
+app.post('/create_account', urlencodedParser, function (req, res, next) {
+    const creating_username = req.body.new_username;
+    const creating_password = req.body.new_password;
+    const creating_name = req.body.new_fullname;
+    const creating_email = req.body.new_email;
+    console.log("username : " + creating_username + " password : " + creating_password + " real name : " + creating_name + " email : " + creating_email);
+    accountManager.create_account(UserModel, creating_email, creating_password, creating_username, creating_name)
+        .then(code => {
+                if (code === 200) {
+                    console.log("Account successfully created")
+                    res.sendStatus(200);
+                } else {
+                    console.log("Account already exists")
+                    res.sendStatus(400);
+                }
+            }
+        );
 });
 
 app.post('/report_incident', function (req, res, next) {

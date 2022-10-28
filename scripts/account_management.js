@@ -57,7 +57,6 @@ async function get_account(UserModel, email, password) {
 }
 
 
-
 async function check_password(providedPassword, hash) {
     return await bcrypt.compare(providedPassword, hash);
 }

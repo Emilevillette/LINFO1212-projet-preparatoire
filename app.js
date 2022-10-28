@@ -56,7 +56,7 @@ app.use(session({
 
 app.post('/login_account', urlencodedParser, function (req, res, next) {
     const account = accountManager.get_account(UserModel, req.body.existing_email, req.body.existing_password)
-    if(account instanceof String) {
+    if (account instanceof String) {
         res.redirect("/login?code=" + account);
         next();
     } else {
@@ -69,9 +69,9 @@ app.post('/login_account', urlencodedParser, function (req, res, next) {
 app.post('/create_account', urlencodedParser, function (req, res, next) {
     accountManager.create_account(UserModel, req.body.new_email, req.body.new_password, req.body.new_username, req.body.new_fullname)
         .then(code => {
-            console.log("Account successfully created")
-            res.redirect("/login?code=" + code);
-            next();
+                console.log("Account successfully created")
+                res.redirect("/login?code=" + code);
+                next();
             }
         );
 });

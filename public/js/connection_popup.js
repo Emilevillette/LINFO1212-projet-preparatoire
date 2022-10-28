@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if(urlParams.get('code') === "200") {
         connection_div.innerText = "Compte créé avec succès.";
         connection_div.style.backgroundColor = "#198754";
-        connection_div.style.display = "block";
+        connection_div.style.display = "inline-block";
     } else if(urlParams.get('code')=== "400") {
         connection_div.innerText = "Cet email est déjà utilisé.";
         connection_div.style.backgroundColor = "#dc3545";
-        connection_div.style.display = "block";
+        connection_div.style.display = "inline-block";
 
     }
 });

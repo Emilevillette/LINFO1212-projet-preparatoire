@@ -5,6 +5,9 @@ var bodyparser = require('body-parser');
 var urlencodedParser = bodyparser.urlencoded({extended: true});
 var path = require('path');
 
+var https = require('https');
+var fs = require('fs');
+
 var app = express();
 
 //app.use(bodyparser.json); // FOR FUTURE USE WITH API
@@ -98,6 +101,10 @@ app.get('*', function (req, res) {
 
 
 app.use(express.static('content'));
-app.listen(8080, () => {
+https.createServer({
+    key: fs.readFileSync('./key.pem'),
+    cert: fs.readFileSync('./cert.pem'),
+    passphrase: 'ingi'
+}, app).listen(8080, () => {
     console.log("Server up at http://localhost:8080/")
 });

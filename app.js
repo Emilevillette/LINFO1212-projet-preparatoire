@@ -44,7 +44,7 @@ initDB().then(() => {
 });
 
 app.use(session({
-    secret: "df7p+9i+y&;qE<9G_MosjTN?$</#p3", //THIS SHOULD BE IN A CONFIG FILE AND NOT COMMITED, used here for the sake of the project
+    secret: "df7p+9i+y&;qE<9G_MosjTN?$</#p3", //THIS SHOULD BE IN A CONFIG FILE AND NOT COMMITTED, used here for the sake of the project
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -65,10 +65,12 @@ app.post('/create_account', urlencodedParser, function (req, res, next) {
         .then(code => {
                 if (code === 200) {
                     console.log("Account successfully created")
-                    res.sendStatus(200);
+                    res.redirect(302,"/login");
+                    next();
                 } else {
                     console.log("Account already exists")
-                    res.sendStatus(400);
+                    res.redirect(302, "/login");
+                    next();
                 }
             }
         );

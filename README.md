@@ -4,10 +4,12 @@
 
 05/11/2022
 
-Emile VILLETTE, Téo POUCET, Arthur LOUETTE
+Emile VILLETTE, Téo POUCET (présent jusqu'à la moitié du projet pour des raisons médicales), Arthur LOUETTE
 
 ### How to run the project
 To install the required packages: `npm install`
+
+Generate HTTPS files: `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365`
 
 To run the project run: `node app.js` and head to `http://127.0.0.1:8080/` 
 

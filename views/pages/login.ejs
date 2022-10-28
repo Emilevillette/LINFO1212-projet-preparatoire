@@ -16,9 +16,8 @@
 
 <form method="post" action="/login_account">
     <div class="mb-3 ms-4 mt-2 w-25">
-        <label class="form-label" for="existing_username">Nom d'utilisateur</label>
-        <input class="form-control" id="existing" name="existing_username" placeholder="Exemple: JeanDupont453"
-               type="text">
+        <label class="form-label" for="existing_email">Adresse email</label>
+        <input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="existing_email" placeholder="Exemple: Jeandupont@mail.com">
     </div>
     <div class="mb-3 ms-4 mt-2 w-25">
         <label class="form-label" for="existing_password">Mot de passe</label>

@@ -55,9 +55,15 @@ app.use(session({
 }));
 
 app.post('/login_account', urlencodedParser, function (req, res, next) {
-    const existing_username = req.body.existing_username;
-    const existing_password = req.body.existing_password;
-    res.sendStatus(200);
+    const account = accountManager.get_account(UserModel, req.body.existing_email, req.body.existing_password)
+    if(account instanceof String) {
+        res.redirect("/login?code=" + account);
+        next();
+    } else {
+        req.session.username = account.username;
+        res.redirect("/login?code=connect_ok");
+        next();
+    }
 });
 
 app.post('/create_account', urlencodedParser, function (req, res, next) {

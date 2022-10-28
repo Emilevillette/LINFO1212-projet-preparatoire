@@ -1,8 +1,12 @@
 var express = require('express');
+var session = require('express-session');
+
 var bodyparser = require('body-parser');
-var path = require('path');
-var app = express();
 var urlencodedParser = bodyparser.urlencoded({extended: true});
+var path = require('path');
+
+var app = express();
+
 //app.use(bodyparser.json); // FOR FUTURE USE WITH API
 
 const db = require("./config/database");
@@ -35,6 +39,17 @@ const initDB = async () => {
 initDB().then(() => {
     console.log("Database successfully initiated");
 });
+
+app.use(session({
+    secret: "df7p+9i+y&;qE<9G_MosjTN?$</#p3", //THIS SHOULD BE IN A CONFIG FILE AND NOT COMMITED, used here for the sake of the project
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        path: '/',
+        httpOnly: true,
+        maxAge: 86400000
+    }
+}));
 
 app.post('/login_account', urlencodedParser, function (req, res, next) {
     const existing_username = req.body.existing_username;

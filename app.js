@@ -2,7 +2,7 @@ var express = require('express');
 var bodyparser = require('body-parser');
 var path = require('path');
 var app = express();
-var urlencodedParser = bodyparser.urlencoded({extended: false});
+var urlencodedParser = bodyparser.urlencoded({extended: true});
 //app.use(bodyparser.json); // FOR FUTURE USE WITH API
 
 const db = require("./config/database");
@@ -43,12 +43,7 @@ app.post('/login_account', urlencodedParser, function (req, res, next) {
 });
 
 app.post('/create_account', urlencodedParser, function (req, res, next) {
-    const creating_username = req.body.new_username;
-    const creating_password = req.body.new_password;
-    const creating_name = req.body.new_fullname;
-    const creating_email = req.body.new_email;
-    console.log("username : " + creating_username + " password : " + creating_password + " real name : " + creating_name + " email : " + creating_email);
-    accountManager.create_account(UserModel, creating_email, creating_password, creating_username, creating_name)
+    accountManager.create_account(UserModel, req.body.new_email, req.body.new_password, req.body.new_username, req.body.new_fullname)
         .then(code => {
                 if (code === 200) {
                     console.log("Account successfully created")
@@ -76,7 +71,7 @@ app.get('/incident_input', function (req, res) {
     res.render('pages/incident_input.ejs');
 });
 
-app.get('/contact',function(req,res){
+app.get('/contact', function (req, res) {
     res.render('pages/contact.ejs');
 });
 

@@ -16,10 +16,26 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/incident_input">Nouvel incident</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/login">Se connecter</a>
-                </li>
+                <% if(!loggedIn) { %>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/login">Se connecter</a>
+                    </li>
+                <% } %>
             </ul>
+            <ul class="nav navbar-nav ms-auto">
+                <% if(loggedIn) { %>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <%= username %>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="/logout">Se déconnecter</a></li>
+                        </ul>
+                    </li>
+                <% } %>
+            </ul>
+
             <form class="d-flex" method="get" action="/">
                 <input class="form-control me-2" type="search" placeholder="Trouver un incident"
                        aria-label="Search" name="search">

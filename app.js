@@ -55,15 +55,17 @@ app.use(session({
 }));
 
 app.post('/login_account', urlencodedParser, function (req, res, next) {
-    const account = accountManager.get_account(UserModel, req.body.existing_email, req.body.existing_password)
-    if (account instanceof String) {
-        res.redirect("/login?code=" + account);
-        next();
-    } else {
-        req.session.username = account.username;
-        res.redirect("/login?code=connect_ok");
-        next();
-    }
+    accountManager.get_account(UserModel, req.body.existing_email, req.body.existing_password).then(result => {
+        if (result["pass"] === false) {
+            res.redirect("/login?code=" + result["code"]);
+            next();
+        } else {
+            req.session.username = result["data"].username;
+            res.redirect("/login?code=connect_ok");
+            next();
+        }
+    });
+
 });
 
 app.post('/create_account', urlencodedParser, function (req, res, next) {
@@ -80,19 +82,20 @@ app.post('/report_incident', function (req, res, next) {
 });
 
 app.get('/', function (req, res) {
-    res.render('pages/index.ejs');
+    res.render('pages/index.ejs', accountManager.page_render_options(req));
 });
 
 app.get('/login', function (req, res) {
-    res.render('pages/login.ejs');
+    res.render('pages/login.ejs', accountManager.page_render_options(req));
 });
 
 app.get('/incident_input', function (req, res) {
-    res.render('pages/incident_input.ejs');
+    res.render('pages/incident_input.ejs', accountManager.page_render_options(req));
 });
 
-app.get('/contact', function (req, res) {
-    res.render('pages/contact.ejs');
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
 });
 
 app.use(express.static(public_dir));

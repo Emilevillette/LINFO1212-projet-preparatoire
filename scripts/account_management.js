@@ -43,19 +43,43 @@ async function check_existing(UserModel, email) {
 }
 
 async function get_account(UserModel, email, password) {
-    const account = await check_existing(UserModel, email)
+    const account = await check_existing(UserModel, email);
     if (account === false) {
-        return "connect_not_found";
+        return {
+            code: "connect_not_found",
+            pass: false,
+            data: null
+        };
     } else {
         const check = await check_password(password, account.password_hash);
         if (check) {
-            return account;
+            return {
+                code: "connect_ok",
+                pass: true,
+                data: account
+            };
         } else {
-            return "connect_password_incorrect";
+            return {
+                code: "connect_password_incorrect",
+                pass: false,
+                data: null
+            };
         }
     }
 }
 
+function page_render_options(req) {
+    if(req.session.username) {
+        return {
+            loggedIn: true,
+            username: req.session.username,
+        }
+    }
+    return{
+        loggedIn: false,
+        username: "Anonyme",
+    }
+}
 
 async function check_password(providedPassword, hash) {
     return await bcrypt.compare(providedPassword, hash);
@@ -67,4 +91,5 @@ async function hash_password(password) {
 }
 
 
-module.exports = {create_account, get_account};
+
+module.exports = {create_account, get_account, page_render_options};

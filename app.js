@@ -58,11 +58,9 @@ app.post('/login_account', urlencodedParser, function (req, res, next) {
     accountManager.get_account(UserModel, req.body.existing_email, req.body.existing_password).then(result => {
         if (result["pass"] === false) {
             res.redirect("/login?code=" + result["code"]);
-            next();
         } else {
             req.session.username = result["data"].username;
             res.redirect("/login?code=connect_ok");
-            next();
         }
     });
 
@@ -71,9 +69,7 @@ app.post('/login_account', urlencodedParser, function (req, res, next) {
 app.post('/create_account', urlencodedParser, function (req, res, next) {
     accountManager.create_account(UserModel, req.body.new_email, req.body.new_password, req.body.new_username, req.body.new_fullname)
         .then(code => {
-                console.log("Account successfully created")
                 res.redirect("/login?code=" + code);
-                next();
             }
         );
 });

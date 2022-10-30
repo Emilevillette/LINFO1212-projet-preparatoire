@@ -22,14 +22,6 @@ const Incidents = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        submitted_by: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            /*references: {
-                model: Users,
-                id: 'email',
-            }*/
-        },
         submitted_at: {
             type: DataTypes.DATE,
             allowNull: false,

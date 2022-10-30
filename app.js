@@ -60,6 +60,7 @@ app.post('/login_account', urlencodedParser, function (req, res, next) {
             res.redirect("/login?code=" + result["code"]);
         } else {
             req.session.username = result["data"].username;
+            req.session.email = result["data"].email;
             res.redirect("/login?code=connect_ok");
         }
     });
@@ -74,7 +75,12 @@ app.post('/create_account', urlencodedParser, function (req, res, next) {
         );
 });
 
-app.post('/report_incident', function (req, res, next) {
+app.post('/report_incident', function (req, res, next) {0
+    if(!req.session.username) {
+        res.redirect("/login?code=login_required_incident_submit");
+    } else {
+
+    }
 });
 
 app.get('/', function (req, res) {

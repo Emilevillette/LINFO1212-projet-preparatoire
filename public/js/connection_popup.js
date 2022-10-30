@@ -3,24 +3,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const queryString = window.location.search;
     const urlParamsCode = (new URLSearchParams(queryString)).get("code");
     var connection_div = document.getElementById("connection_feedback");
-    if(urlParamsCode === "create_ok") {
+    if (urlParamsCode === "create_ok") {
         connection_div.innerText = "Compte créé avec succès.";
         connection_div.style.backgroundColor = "#198754";
         connection_div.style.display = "inline-block";
-    } else if(urlParamsCode === "create_fail") {
+    } else if (urlParamsCode === "create_fail") {
         connection_div.innerText = "Cet email est déjà utilisé.";
         connection_div.style.backgroundColor = "#dc3545";
         connection_div.style.display = "inline-block";
-    } else if(urlParamsCode === "connect_ok") {
+    } else if (urlParamsCode === "connect_ok") {
         connection_div.innerText = "Connecté avec succès.";
         connection_div.style.backgroundColor = "#198754";
         connection_div.style.display = "inline-block";
-    } else if(urlParamsCode === "connect_not_found") {
+    } else if (urlParamsCode === "connect_not_found") {
         connection_div.innerText = "Ce compte n'existe pas.";
         connection_div.style.backgroundColor = "#dc3545";
         connection_div.style.display = "inline-block";
-    } else if(urlParamsCode === "connect_password_incorrect") {
+    } else if (urlParamsCode === "connect_password_incorrect") {
         connection_div.innerText = "Mot de passe incorrect, merci de réessayer.";
+        connection_div.style.backgroundColor = "#dc3545";
+        connection_div.style.display = "inline-block";
+    } else if (urlParamsCode === "login_required_incident_submit") {
+        connection_div.innerText = "Vous devez être connecté(e) pour signaler un incident.";
         connection_div.style.backgroundColor = "#dc3545";
         connection_div.style.display = "inline-block";
     }

@@ -1,4 +1,4 @@
-const IncidentModel = require("../models/incidents")
+const IncidentModel = require("../models/incidents");
 
 async function create_incident(description, address, email) {
     await IncidentModel.create({

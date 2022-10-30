@@ -68,7 +68,7 @@ app.get('/login', function (req, res) {
 });
 
 app.post('/login_account', urlencodedParser, function (req, res, next) {
-    accountManager.get_account(UserModel, req.body.existing_email, req.body.existing_password).then(result => {
+    accountManager.get_account(req.body.existing_email, req.body.existing_password).then(result => {
         if (result["pass"] === false) {
             res.redirect("/login?code=" + result["code"]);
         } else {
@@ -81,7 +81,7 @@ app.post('/login_account', urlencodedParser, function (req, res, next) {
 });
 
 app.post('/create_account', urlencodedParser, function (req, res, next) {
-    accountManager.create_account(UserModel, req.body.new_email, req.body.new_password, req.body.new_username, req.body.new_fullname)
+    accountManager.create_account(req.body.new_email, req.body.new_password, req.body.new_username, req.body.new_fullname)
         .then(code => {
                 res.redirect("/login?code=" + code);
             }

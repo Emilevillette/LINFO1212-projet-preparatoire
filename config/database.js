@@ -8,9 +8,12 @@ const sequelize = new Sequelize({
 
 async function create_incident(description, address, email, date, db, UserModel, IncidentModel) {
     db.sync();
-    IncidentModel.create(
-
-    )
+    IncidentModel.create({
+        id: uuidv4(),
+        description: description,
+        address: address,
+        submitted_at: date
+    })
 }
 
 module.exports = {sequelize, create_incident};

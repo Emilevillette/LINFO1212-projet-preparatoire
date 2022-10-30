@@ -20,10 +20,6 @@ const Incidents = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        submitted_at: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
     }, {}
 );
 

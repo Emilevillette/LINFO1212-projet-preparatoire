@@ -32,11 +32,10 @@ const initDB = async () => {
 
         // Synchronize model
         // Users can have relations with multiple incidents
-        UserModel.hasMany(IncidentModel, {as: "incidents"});
-        IncidentModel.belongsTo(UserModel, {
-            foreignKey: "email",
-            as: "submitted_by"
+        UserModel.hasMany(IncidentModel, {
+            foreignKey: "email"
         });
+
         await db.sync({
             alter: true,
         })
@@ -101,8 +100,7 @@ app.post('/report_incident', urlencodedParser, function (req, res, next) {
     if (!req.session.username) {
         res.redirect("/login?code=login_required_incident_submit");
     } else {
-        console.log(IncidentModel)
-        incidentManager.create_incident(req.body.description, req.body.address, req.session.email, IncidentModel).then(result =>{
+        incidentManager.create_incident(req.body.description, req.body.address, req.session.email).then(result =>{
             res.redirect("/");
         });
     }

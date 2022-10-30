@@ -12,7 +12,9 @@ var app = express();
 
 //app.use(bodyparser.json); // FOR FUTURE USE WITH API
 
-const db = require("./config/database");
+//import {sequelize as db} from "./config/database";
+
+const {sequelize: db} = require("./config/database");
 const IncidentModel = require("./models/incidents");
 const UserModel = require("./models/users");
 const accountManager = require("./scripts/account_management");
@@ -75,12 +77,8 @@ app.post('/create_account', urlencodedParser, function (req, res, next) {
         );
 });
 
-app.post('/report_incident', function (req, res, next) {0
-    if(!req.session.username) {
-        res.redirect("/login?code=login_required_incident_submit");
-    } else {
-
-    }
+app.post('/report_incident', function (req, res, next) {
+    res.redirect("/login?code=login_required_incident_submit");
 });
 
 app.get('/', function (req, res) {
@@ -92,7 +90,11 @@ app.get('/login', function (req, res) {
 });
 
 app.get('/incident_input', function (req, res) {
-    res.render('pages/incident_input.ejs', accountManager.page_render_options(req));
+    if (!req.session.username) {
+        res.render('pages/incident_input.ejs', accountManager.page_render_options(req));
+    } else {
+
+    }
 });
 
 app.get('/logout', (req, res) => {

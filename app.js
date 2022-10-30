@@ -38,7 +38,7 @@ const initDB = async () => {
 
         await db.sync({
             alter: true,
-        })
+        });
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }
@@ -100,7 +100,7 @@ app.post('/report_incident', urlencodedParser, function (req, res, next) {
     if (!req.session.username) {
         res.redirect("/login?code=login_required_incident_submit");
     } else {
-        incidentManager.create_incident(req.body.description, req.body.address, req.session.email).then(result =>{
+        incidentManager.create_incident(req.body.description, req.body.address, req.session.email).then(result => {
             res.redirect("/");
         });
     }

@@ -14,10 +14,11 @@ var app = express();
 
 //import {sequelize as db} from "./config/database";
 
-const {sequelize: db, create_incident} = require("./config/database");
+const {sequelize: db} = require("./config/database");
 const IncidentModel = require("./models/incidents");
 const UserModel = require("./models/users");
 const accountManager = require("./scripts/account_management");
+const incidentManager = require("./scripts/incident_management");
 
 var public_dir = path.join(__dirname, 'public');
 
@@ -31,8 +32,11 @@ const initDB = async () => {
 
         // Synchronize model
         // Users can have relations with multiple incidents
-        UserModel.hasMany(IncidentModel);
-        IncidentModel.belongsTo(UserModel);
+        UserModel.hasMany(IncidentModel, {as: "incidents"});
+        IncidentModel.belongsTo(UserModel, {
+            foreignKey: "email",
+            as: "submitted_by"
+        });
         await db.sync({
             alter: true,
         })
@@ -56,6 +60,14 @@ app.use(session({
     }
 }));
 
+app.get('/', function (req, res) {
+    res.render('pages/index.ejs', accountManager.page_render_options(req));
+});
+
+app.get('/login', function (req, res) {
+    res.render('pages/login.ejs', accountManager.page_render_options(req));
+});
+
 app.post('/login_account', urlencodedParser, function (req, res, next) {
     accountManager.get_account(UserModel, req.body.existing_email, req.body.existing_password).then(result => {
         if (result["pass"] === false) {
@@ -77,27 +89,22 @@ app.post('/create_account', urlencodedParser, function (req, res, next) {
         );
 });
 
-app.post('/report_incident', function (req, res, next) {
-    if (!req.session.username) {
-        res.redirect("/login?code=login_required_incident_submit");
-    } else {
-        create_incident(req.body.description, req.body.address, req.session.email, db, UserModel, IncidentModel);
-    }
-});
-
-app.get('/', function (req, res) {
-    res.render('pages/index.ejs', accountManager.page_render_options(req));
-});
-
-app.get('/login', function (req, res) {
-    res.render('pages/login.ejs', accountManager.page_render_options(req));
-});
-
 app.get('/incident_input', function (req, res) {
     if (!req.session.username) {
         res.redirect('/login?code=login_required_incident_submit');
     } else {
         res.render('pages/incident_input.ejs', accountManager.page_render_options(req));
+    }
+});
+
+app.post('/report_incident', urlencodedParser, function (req, res, next) {
+    if (!req.session.username) {
+        res.redirect("/login?code=login_required_incident_submit");
+    } else {
+        console.log(IncidentModel)
+        incidentManager.create_incident(req.body.description, req.body.address, req.session.email, IncidentModel).then(result =>{
+            res.redirect("/");
+        });
     }
 });
 

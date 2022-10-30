@@ -6,14 +6,4 @@ const sequelize = new Sequelize({
     storage: "preparatoryproject.sqlite"
 })
 
-async function create_incident(description, address, email, date, db, UserModel, IncidentModel) {
-    db.sync();
-    IncidentModel.create({
-        id: uuidv4(),
-        description: description,
-        address: address,
-        submitted_at: date
-    })
-}
-
-module.exports = {sequelize, create_incident};
+module.exports = {sequelize};

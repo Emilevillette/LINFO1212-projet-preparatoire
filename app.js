@@ -62,8 +62,8 @@ app.get('/', function (req, res) {
     res.render('pages/index.ejs', accountManager.page_render_options(req));
 });
 
-app.get('/get_incidents', urlencodedParser, function (req, res) {
-    incidentManager.retrieve_incidents(req.params.date).then(jsonres => {
+app.get('/get_incidents', function (req, res) {
+    incidentManager.retrieve_incidents(req.query.date).then(jsonres => {
         res.json(jsonres);
     })
 })

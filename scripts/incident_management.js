@@ -12,14 +12,15 @@ async function create_incident(description, address, email) {
 }
 
 function retrieve_incidents(date) {
-    if (date) {
+    if (date && date !== "undefined") {
+        const parsedDate = new Date(date);
         return IncidentModel.findAll({
             where: {
-                start_datetime: {
-                    [Op.gte]: date.toDate(),
+                createdAt: {
+                    [Op.between]: [parsedDate.setHours(0), parsedDate.setHours(23, 59, 59)]
                 },
-                raw: true,
-            }
+            },
+            raw: true,
         });
     } else {
         return IncidentModel.findAll({raw: true});

@@ -31,13 +31,13 @@ const initDB = async () => {
 
         // Synchronize model
         // Users can have relations with multiple incidents
-        UserModel.hasMany(IncidentModel, {
-            foreignKey: "email"
-        });
+        //UserModel.hasMany(IncidentModel, {
+        //    foreignKey: "email"
+        //});
+        UserModel.hasMany(IncidentModel, {as: "incidents", foreignKey: {name: "email", allowNull: false}});
+        IncidentModel.belongsTo(UserModel, {as: "user", foreignKey: {name: "email", allowNull: false}})
 
-        await db.sync({
-            alter: true,
-        });
+        await db.sync();
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }
@@ -88,9 +88,8 @@ app.post('/login_account', urlencodedParser, function (req, res, next) {
 app.post('/create_account', urlencodedParser, function (req, res, next) {
     accountManager.create_account(req.body.new_email, req.body.new_password, req.body.new_username, req.body.new_fullname)
         .then(code => {
-                res.redirect("/login?code=" + code);
-            }
-        );
+            res.redirect("/login?code=" + code);
+        });
 });
 
 app.get('/incident_input', function (req, res) {

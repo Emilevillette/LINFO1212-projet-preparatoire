@@ -13,11 +13,16 @@ async function create_incident(description, address, email) {
 
 function retrieve_incidents(date) {
     if (date && date !== "undefined") {
-        const parsedDate = new Date(date);
+        var parsedDate = new Date(date);
+        let day = new Date(new Date(date).setUTCHours(0));
+        let dayAfter = new Date(new Date(day).setUTCDate(new Date(day).getUTCDate() + 1))
+        console.log(new Date(day).getDate() + 1)
+        console.log(day)
+        console.log(dayAfter)
         return IncidentModel.findAll({
             where: {
                 createdAt: {
-                    [Op.between]: [parsedDate.setHours(0), parsedDate.setHours(23, 59, 59)]
+                    [Op.between]: [day, dayAfter]
                 },
             },
             raw: true,

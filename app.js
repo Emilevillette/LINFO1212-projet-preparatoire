@@ -31,9 +31,6 @@ const initDB = async () => {
 
         // Synchronize model
         // Users can have relations with multiple incidents
-        //UserModel.hasMany(IncidentModel, {
-        //    foreignKey: "email"
-        //});
         UserModel.hasMany(IncidentModel, {as: "incidents", foreignKey: {name: "email", allowNull: false}});
         IncidentModel.belongsTo(UserModel, {as: "user", foreignKey: {name: "email", allowNull: false}})
 

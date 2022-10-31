@@ -85,6 +85,7 @@ app.post('/login_account', urlencodedParser, function (req, res, next) {
 app.post('/create_account', urlencodedParser, function (req, res, next) {
     accountManager.create_account(req.body.new_email, req.body.new_password, req.body.new_username, req.body.new_fullname)
         .then(code => {
+            console.log(code)
             res.redirect("/login?code=" + code);
         });
 });

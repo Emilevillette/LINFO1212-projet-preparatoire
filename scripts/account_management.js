@@ -26,9 +26,8 @@ async function create_account(email, password, username, full_name) {
         password_hash: await hash_password(password),
         username: username,
         full_name: full_name,
-    }).then(() => {
-        return "create_ok";
-    });
+    })
+    return "create_ok";
 }
 
 async function check_existing(email) {

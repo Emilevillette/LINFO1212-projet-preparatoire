@@ -10,8 +10,6 @@ class UserAlreadyExistsError extends Error {
 
 async function create_account(email, password, username, full_name) {
     try {
-        console.log("=====================")
-        console.log(email)
         if (await check_existing(email) !== false) {
             throw new UserAlreadyExistsError("Account already exists");
         }
@@ -34,7 +32,6 @@ async function create_account(email, password, username, full_name) {
 }
 
 async function check_existing(email) {
-    console.log(email)
     const account = await UserModel.findByPk(email);
     if (account) {
         return account;

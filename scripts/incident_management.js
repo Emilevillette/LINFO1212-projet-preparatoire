@@ -1,4 +1,5 @@
 const IncidentModel = require("../models/incidents");
+const {Op} = require("sequelize");
 
 async function create_incident(description, address, email) {
     await IncidentModel.create({
@@ -10,4 +11,19 @@ async function create_incident(description, address, email) {
     });
 }
 
-module.exports = {create_incident};
+function retrieve_incidents(date) {
+    if (date) {
+        return IncidentModel.findAll({
+            where: {
+                start_datetime: {
+                    [Op.gte]: date.toDate(),
+                },
+                raw: true,
+            }
+        });
+    } else {
+        return IncidentModel.findAll({raw: true});
+    }
+}
+
+module.exports = {create_incident, retrieve_incidents};

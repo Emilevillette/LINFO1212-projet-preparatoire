@@ -12,13 +12,12 @@ var app = express();
 
 //app.use(bodyparser.json); // FOR FUTURE USE WITH API
 
-//import {sequelize as db} from "./config/database";
-
 const {sequelize: db} = require("./config/database");
 const IncidentModel = require("./models/incidents");
 const UserModel = require("./models/users");
 const accountManager = require("./scripts/account_management");
 const incidentManager = require("./scripts/incident_management");
+const url = require("url");
 
 var public_dir = path.join(__dirname, 'public');
 
@@ -62,6 +61,12 @@ app.use(session({
 app.get('/', function (req, res) {
     res.render('pages/index.ejs', accountManager.page_render_options(req));
 });
+
+app.get('/get_incidents', urlencodedParser, function (req, res) {
+    incidentManager.retrieve_incidents(req.params.date).then(jsonres => {
+        res.json(jsonres);
+    })
+})
 
 app.get('/login', function (req, res) {
     res.render('pages/login.ejs', accountManager.page_render_options(req));

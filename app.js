@@ -1,14 +1,14 @@
-var express = require('express');
-var session = require('express-session');
+const express = require('express');
+const session = require('express-session');
 
-var bodyparser = require('body-parser');
-var urlencodedParser = bodyparser.urlencoded({extended: true});
-var path = require('path');
+const bodyparser = require('body-parser');
+const urlencodedParser = bodyparser.urlencoded({extended: true});
+const path = require('path');
 
-var https = require('https');
-var fs = require('fs');
+const https = require('https');
+const fs = require('fs');
 
-var app = express();
+const app = express();
 
 //app.use(bodyparser.json); // FOR FUTURE USE WITH API
 
@@ -18,7 +18,7 @@ const UserModel = require("./models/users");
 const accountManager = require("./scripts/account_management");
 const incidentManager = require("./scripts/incident_management");
 
-var public_dir = path.join(__dirname, 'public');
+const public_dir = path.join(__dirname, 'public');
 
 app.set('view engine', 'ejs');
 
@@ -68,7 +68,7 @@ app.get('/login', function (req, res) {
     res.render('pages/login.ejs', accountManager.page_render_options(req));
 });
 
-app.post('/login_account', urlencodedParser, function (req, res, next) {
+app.post('/login_account', urlencodedParser, function (req, res) {
     accountManager.get_account(req.body.existing_email, req.body.existing_password).then(result => {
         if (result["pass"] === false) {
             res.redirect("/login?code=" + result["code"]);
@@ -81,7 +81,7 @@ app.post('/login_account', urlencodedParser, function (req, res, next) {
 
 });
 
-app.post('/create_account', urlencodedParser, function (req, res, next) {
+app.post('/create_account', urlencodedParser, function (req, res) {
     accountManager.create_account(req.body.new_email, req.body.new_password, req.body.new_username, req.body.new_fullname)
         .then(code => {
             console.log(code)
@@ -97,13 +97,12 @@ app.get('/incident_input', function (req, res) {
     }
 });
 
-app.post('/report_incident', urlencodedParser, function (req, res, next) {
+app.post('/report_incident', urlencodedParser, function (req, res) {
     if (!req.session.username) {
         res.redirect("/login?code=login_required_incident_submit");
     } else {
-        incidentManager.create_incident(req.body.description, req.body.address, req.session.email).then(result => {
-            res.redirect("/");
-        });
+        incidentManager.create_incident(req.body.description, req.body.address, req.session.email);
+        res.redirect("/");
     }
 });
 

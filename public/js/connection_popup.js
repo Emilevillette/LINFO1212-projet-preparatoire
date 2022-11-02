@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* your logic here */
     const queryString = window.location.search;
     const urlParamsCode = (new URLSearchParams(queryString)).get("code");
-    var connection_div = document.getElementById("connection_feedback");
+    const connection_div = document.getElementById("connection_feedback");
     if (urlParamsCode === "create_ok") {
         connection_div.innerText = "Compte créé avec succès.";
         connection_div.style.backgroundColor = "#198754";

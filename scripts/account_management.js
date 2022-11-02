@@ -1,24 +1,9 @@
 const bcrypt = require("bcrypt");
 const UserModel = require("../models/users");
 
-class UserAlreadyExistsError extends Error {
-    constructor(message) {
-        super(message); // (1)
-        this.name = "UserAlreadyExistsError"; // (2)
-    }
-}
-
 async function create_account(email, password, username, full_name) {
-    try {
-        if (await check_existing(email) !== false) {
-            throw new UserAlreadyExistsError("Account already exists");
-        }
-    } catch (e) {
-        if (e instanceof UserAlreadyExistsError) {
-            return "create_fail";
-        } else {
-            console.log(e);
-        }
+    if (await check_existing(email) !== false) {
+        return "create_fail";
     }
 
     await UserModel.create({

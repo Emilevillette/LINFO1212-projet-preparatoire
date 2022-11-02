@@ -6,14 +6,13 @@ async function create_incident(description, address, email) {
         description: description,
         address: address,
         email: email,
-    }).then(res => {
+    }).then(() => {
         return "incident_create_ok";
     });
 }
 
 function retrieve_incidents(date) {
     if (date && date !== "undefined") {
-        var parsedDate = new Date(date);
         let day = new Date(new Date(date).setUTCHours(0));
         let dayAfter = new Date(new Date(day).setUTCDate(new Date(day).getUTCDate() + 1))
         return IncidentModel.findAll({

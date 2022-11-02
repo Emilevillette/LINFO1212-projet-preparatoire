@@ -10,8 +10,6 @@ const fs = require('fs');
 
 const app = express();
 
-//app.use(bodyparser.json); // FOR FUTURE USE WITH API
-
 const {sequelize: db} = require("./config/database");
 const IncidentModel = require("./models/incidents");
 const UserModel = require("./models/users");

@@ -17,7 +17,6 @@ const IncidentModel = require("./models/incidents");
 const UserModel = require("./models/users");
 const accountManager = require("./scripts/account_management");
 const incidentManager = require("./scripts/incident_management");
-const url = require("url");
 
 var public_dir = path.join(__dirname, 'public');
 

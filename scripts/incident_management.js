@@ -16,9 +16,6 @@ function retrieve_incidents(date) {
         var parsedDate = new Date(date);
         let day = new Date(new Date(date).setUTCHours(0));
         let dayAfter = new Date(new Date(day).setUTCDate(new Date(day).getUTCDate() + 1))
-        console.log(new Date(day).getDate() + 1)
-        console.log(day)
-        console.log(dayAfter)
         return IncidentModel.findAll({
             where: {
                 createdAt: {

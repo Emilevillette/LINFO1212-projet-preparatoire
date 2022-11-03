@@ -134,6 +134,5 @@ dist
 # DO NOT COMMIT THE DATABASE
 preparatoryproject.sqlite
 
-config.js
 key.pem
 cert.pem

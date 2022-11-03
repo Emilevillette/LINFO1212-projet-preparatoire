@@ -17,7 +17,9 @@
 <form method="post" action="/login_account">
     <div class="mb-3 ms-4 mt-2 w-25">
         <label class="form-label" for="existing_email">Adresse email</label>
-        <input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="existing_email"
+        <input type="email" class="form-control"
+               pattern="/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi"
+               name="existing_email"
                placeholder="Exemple: Jeandupont@mail.com" required>
     </div>
     <div class="mb-3 ms-4 mt-2 w-25">
@@ -51,7 +53,9 @@
     </div>
     <div class="mb-3 ms-4 mt-2 w-25">
         <label class="form-label" for="new_email">Adresse e-mail</label>
-        <input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="creating"
+        <input type="email" class="form-control"
+               pattern="/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi"
+               id="creating"
                name="new_email"
                placeholder="Exemple: Jeandupont@mail.com" required>
     </div>

@@ -1,6 +1,9 @@
 const order = ["description", "address", "email", "createdAt"]
 
 function get_incidents(date, search) {
+    if(!search && window.location.search) {
+        search = (new URLSearchParams(window.location.search)).get("search");
+    }
     fetch(`/get_incidents?date=${date}&search=${search}`)
         .then(jsonres => {
             return jsonres.json()

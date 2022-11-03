@@ -40,24 +40,48 @@ The `./specifications` directory contains the specifications in the Gherkin form
 
 `./public` contains the elements accessible by the user.
 
-`./scripts` are the backend functions (user-related and incident-related ones in the scope of this project)
+`./scripts` are the backend functions (user-related and incident-related ones in the scope of this project).
 ```bash
-|-- favicon.ico
+.
+|-- app.js
+|-- cert.pem
+|-- config
+|   `-- database.js
+|-- key.pem
+|-- models
+|   |-- incidents.js
+|   `-- users.js
+|-- package.json
+|-- package-lock.json
+|-- populate_database.js
+|-- preparatoryproject.sqlite
+|-- public
+|   |-- css
+|   |   `-- body.css
+|   |-- favicon.ico
+|   |-- img
+|   |   `-- logo.png
+|   `-- js
+|       |-- connection_popup.js
+|       `-- retrieve_incidents.js
 |-- README.md
+|-- scripts
+|   |-- account_management.js
+|   `-- incident_management.js
 |-- specifications
 |   |-- incidentinput.feature
+|   |-- LINFO1212-Preparatoire.drawio.xml
 |   |-- login.feature
 |   `-- search.feature
-`-- src
-    |-- img
-    |   |-- logo.png
-    |   `-- placeholder.png
-    |-- incident_input.ejs
-    |-- index.ejs
-    |-- js
-    |   `-- insert_code.js
-    |-- login.ejs
-    `-- navbar.ejs
+`-- views
+    |-- pages
+    |   |-- incident_input.ejs
+    |   |-- index.ejs
+    |   `-- login.ejs
+    `-- partials
+        |-- footer.ejs
+        |-- head.ejs
+        `-- navbar.ejs
 
-4 directories, 12 files
+11 directories, 28 files
 ```

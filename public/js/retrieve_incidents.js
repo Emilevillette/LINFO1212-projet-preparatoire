@@ -1,7 +1,7 @@
 const order = ["description", "address", "email", "createdAt"]
 
-function get_incidents(date) {
-    fetch(`/get_incidents?date=${date}`)
+function get_incidents(date, search) {
+    fetch(`/get_incidents?date=${date}&search=${search}`)
         .then(jsonres => {
             return jsonres.json()
         })

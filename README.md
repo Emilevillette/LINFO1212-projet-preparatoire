@@ -2,8 +2,6 @@
 
 ## Group A12
 
-05/11/2022
-
 Emile VILLETTE, Téo POUCET (Present until ~ week 5 for medical reasons), Arthur LOUETTE
 
 ### How to run the project

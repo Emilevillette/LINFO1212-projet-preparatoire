@@ -36,11 +36,14 @@
                 <% } %>
             </ul>
 
-            <form class="d-flex" method="get" action="/">
+            <div class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Trouver un incident"
-                       aria-label="Search" name="search">
-                <button class="btn btn-outline-success" type="submit">Rechercher</button>
-            </form>
+                       aria-label="Search" name="search" id="search"
+                       onsubmit="get_incidents('undefined',document.getElementById('search').value)">
+                <button class="btn btn-outline-success"
+                        onclick="get_incidents('undefined',document.getElementById('search').value)">Rechercher
+                </button>
+            </div>
         </div>
     </div>
 </nav>

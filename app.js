@@ -57,7 +57,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/get_incidents', function (req, res) {
-    incidentManager.retrieve_incidents(req.query.date).then(jsonres => {
+    incidentManager.retrieve_incidents(req.query.date , req.query.search).then(jsonres => {
         res.json(jsonres);
     })
 })

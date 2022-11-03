@@ -11,7 +11,7 @@ async function create_incident(description, address, email) {
     });
 }
 
-function retrieve_incidents(date) {
+function retrieve_incidents(date, search) {
     if (date && date !== "undefined") {
         let day = new Date(new Date(date).setUTCHours(0));
         let dayAfter = new Date(new Date(day).setUTCDate(new Date(day).getUTCDate() + 1))
@@ -23,6 +23,13 @@ function retrieve_incidents(date) {
             },
             raw: true,
         });
+    } else if (search && search !== "undefined") {
+        return IncidentModel.findAll({
+            where: {
+                [Op.or]: [{address: search}, {description: search}]
+            },
+            raw: true
+        })
     } else {
         return IncidentModel.findAll({raw: true});
     }

@@ -36,11 +36,12 @@ The `./specifications` directory contains the specifications in the Gherkin form
 
 `./config` and `./models` contains the configuration of the database and the Sequelize models, respectively.
 
-`./views` contains the HTML templates served to the clients (`/partials` for recurring elements such as navbars and `/pages` for the specific pages)
+`./views` contains the HTML templates served to the clients (`/partials` for recurring elements such as navbars and `/pages` for the specific pages).
 
 `./public` contains the elements accessible by the user.
 
 `./scripts` are the backend functions (user-related and incident-related ones in the scope of this project).
+
 ```bash
 .
 |-- app.js

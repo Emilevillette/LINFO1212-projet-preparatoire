@@ -4,7 +4,7 @@
   "description": "Projet preparatoire LINFO1212",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "echo Error"
   },
   "author": "Emile Villette",
   "license": "ISC",
@@ -19,7 +19,6 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "jest": "^29.2.2",
     "lorem-ipsum": "^2.0.8"
   }
 }

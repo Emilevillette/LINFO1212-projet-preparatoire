@@ -39,15 +39,15 @@ initDB().then(() => {
 });
 
 async function populate_db() {
-    for (let i = 0; i < (Math.random() * 10) + 5; i++) {
+    for (let i = 0; i < (Math.random() * 7) + 4; i++) {
         const rnd_email = lorem.generateWords(1) + "@" + lorem.generateWords(1) + ".com";
-        await UserModel.create({
+        UserModel.create({
             email: rnd_email,
             password_hash: await bcrypt.hash(lorem.generateWords(1), 10),
             username: lorem.generateWords(1),
             full_name: lorem.generateWords(2),
         }).then(() => {
-            for (let i = 0; i < (Math.random() * 4) + 1; i++) {
+            for (let i = 0; i < (Math.random() * 3) + 1; i++) {
                 IncidentModel.create({
                     description: lorem.generateParagraphs(1),
                     address: lorem.generateSentences(1),

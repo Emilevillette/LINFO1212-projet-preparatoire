@@ -18,7 +18,7 @@
     <div class="mb-3 ms-4 mt-2 w-25">
         <label class="form-label" for="existing_email">Adresse email</label>
         <input type="email" class="form-control"
-               pattern="/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi"
+               pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                name="existing_email"
                placeholder="Exemple: Jeandupont@mail.com" required>
     </div>
@@ -54,7 +54,7 @@
     <div class="mb-3 ms-4 mt-2 w-25">
         <label class="form-label" for="new_email">Adresse e-mail</label>
         <input type="email" class="form-control"
-               pattern="/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi"
+               pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                id="creating"
                name="new_email"
                placeholder="Exemple: Jeandupont@mail.com" required>

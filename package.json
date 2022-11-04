@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo Error"
   },
-  "author": "Emile Villette",
+  "author": "Emile Villette, Arthur Louette",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",

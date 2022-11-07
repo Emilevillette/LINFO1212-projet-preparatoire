@@ -33,6 +33,16 @@ const initDB = async () => {
     }
 }
 
+function makepwd() {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < (Math.random()*32)+8; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
 
 initDB().then(() => {
     console.log("Database successfully initiated");
@@ -43,7 +53,7 @@ async function populate_db() {
         const rnd_email = lorem.generateWords(1) + "@" + lorem.generateWords(1) + ".com";
         UserModel.create({
             email: rnd_email,
-            password_hash: await bcrypt.hash(lorem.generateWords(1), 10),
+            password_hash: await bcrypt.hash(makepwd(), 10),
             username: lorem.generateWords(1),
             full_name: lorem.generateWords(2),
         }).then(() => {

@@ -68,7 +68,8 @@ The `./specifications` directory contains the specifications in the Gherkin form
 |-- README.md
 |-- scripts
 |   |-- account_management.js
-|   `-- incident_management.js
+|   |-- incident_management.js
+|   `-- page_render.js 
 |-- specifications
 |   |-- incidentinput.feature
 |   |-- LINFO1212-Preparatoire.drawio.xml
@@ -84,5 +85,5 @@ The `./specifications` directory contains the specifications in the Gherkin form
         |-- head.ejs
         `-- navbar.ejs
 
-11 directories, 28 files
+11 directories, 29 files
 ```

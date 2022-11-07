@@ -16,6 +16,8 @@ const UserModel = require("./models/users");
 const accountManager = require("./scripts/account_management");
 const incidentManager = require("./scripts/incident_management");
 
+const {page_render_options} = require("./scripts/page_render")
+
 const public_dir = path.join(__dirname, 'public');
 
 app.set('view engine', 'ejs');
@@ -53,7 +55,7 @@ app.use(session({
 }));
 
 app.get('/', function (req, res) {
-    res.render('pages/index.ejs', accountManager.page_render_options(req));
+    res.render('pages/index.ejs', page_render_options(req));
 });
 
 app.get('/get_incidents', function (req, res) {
@@ -63,7 +65,7 @@ app.get('/get_incidents', function (req, res) {
 })
 
 app.get('/login', function (req, res) {
-    res.render('pages/login.ejs', accountManager.page_render_options(req));
+    res.render('pages/login.ejs', page_render_options(req));
 });
 
 app.post('/login_account', urlencodedParser, function (req, res) {
@@ -91,7 +93,7 @@ app.get('/incident_input', function (req, res) {
     if (!req.session.username) {
         res.redirect('/login?code=login_required_incident_submit');
     } else {
-        res.render('pages/incident_input.ejs', accountManager.page_render_options(req));
+        res.render('pages/incident_input.ejs', page_render_options(req));
     }
 });
 

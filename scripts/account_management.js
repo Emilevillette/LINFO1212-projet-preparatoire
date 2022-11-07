@@ -50,19 +50,6 @@ async function get_account(email, password) {
     }
 }
 
-function page_render_options(req) {
-    if (req.session.username) {
-        return {
-            loggedIn: true,
-            username: req.session.username,
-        }
-    }
-    return {
-        loggedIn: false,
-        username: "Anonyme",
-    }
-}
-
 async function check_password(providedPassword, hash) {
     return await bcrypt.compare(providedPassword, hash);
 }
@@ -73,4 +60,4 @@ async function hash_password(password) {
 }
 
 
-module.exports = {create_account, get_account, page_render_options};
+module.exports = {create_account, get_account};

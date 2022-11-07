@@ -16,7 +16,8 @@ const UserModel = require("./models/users");
 const accountManager = require("./scripts/account_management");
 const incidentManager = require("./scripts/incident_management");
 
-const {page_render_options} = require("./scripts/page_render")
+const {page_render_options, PageOptions} = require("./scripts/page_render")
+
 
 const public_dir = path.join(__dirname, 'public');
 
@@ -75,6 +76,7 @@ app.post('/login_account', urlencodedParser, function (req, res) {
         } else {
             req.session.username = result["data"].username;
             req.session.email = result["data"].email;
+
             res.redirect("/login?code=connect_ok");
         }
     });

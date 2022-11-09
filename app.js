@@ -16,7 +16,7 @@ const UserModel = require("./models/users");
 const accountManager = require("./scripts/account_management");
 const incidentManager = require("./scripts/incident_management");
 
-const {page_render_options, PageOptions} = require("./scripts/page_render")
+const {page_render_options, PageOptions, MessageClass} = require("./scripts/page_render")
 
 
 const public_dir = path.join(__dirname, 'public');
@@ -57,6 +57,7 @@ app.use(session({
 
 app.get('/', function (req, res) {
     res.render('pages/index.ejs', page_render_options(req));
+    req.session.message = null;
 });
 
 app.get('/get_incidents', function (req, res) {
@@ -67,17 +68,19 @@ app.get('/get_incidents', function (req, res) {
 
 app.get('/login', function (req, res) {
     res.render('pages/login.ejs', page_render_options(req));
+    req.session.message = null;
 });
 
 app.post('/login_account', urlencodedParser, function (req, res) {
     accountManager.get_account(req.body.existing_email, req.body.existing_password).then(result => {
+        req.session.message = new MessageClass(result["code"]);
         if (result["pass"] === false) {
-            res.redirect("/login?code=" + result["code"]);
+            res.redirect("/login");
         } else {
             req.session.username = result["data"].username;
             req.session.email = result["data"].email;
 
-            res.redirect("/login?code=connect_ok");
+            res.redirect("/login");
         }
     });
 
@@ -86,30 +89,35 @@ app.post('/login_account', urlencodedParser, function (req, res) {
 app.post('/create_account', urlencodedParser, function (req, res) {
     accountManager.create_account(req.body.new_email, req.body.new_password, req.body.new_username, req.body.new_fullname)
         .then(code => {
-            console.log(code)
-            res.redirect("/login?code=" + code);
+            req.session.message = new MessageClass(code);
+            res.redirect("login");
         });
 });
 
 app.get('/incident_input', function (req, res) {
     if (!req.session.username) {
-        res.redirect('/login?code=login_required_incident_submit');
+        req.session.message = new MessageClass("login_required_incident_submit")
+        res.redirect("/login");
     } else {
         res.render('pages/incident_input.ejs', page_render_options(req));
+        req.session.message = null;
     }
 });
 
 app.post('/report_incident', urlencodedParser, function (req, res) {
     if (!req.session.username) {
-        res.redirect("/login?code=login_required_incident_submit");
+        req.session.message = new MessageClass("login_required_incident_submit")
+        res.redirect("/login");
     } else {
         incidentManager.create_incident(req.body.description, req.body.address, req.session.email);
+        req.session.message = new MessageClass("incident_create_ok")
         res.redirect("/");
     }
 });
 
 app.get('/logout', (req, res) => {
     req.session.destroy();
+    req.session.message = new MessageClass("logout_ok");
     res.redirect('/');
 });
 

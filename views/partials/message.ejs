@@ -1,0 +1,3 @@
+<% if(message) { %>
+    <div class="rounded border m-3 p-2 w-50 text-light" style="display:inline-block; background-color: <%= message.success === true ? "#198754" : "#dc3545" %>" id="connection_feedback"><%= message.message%></div>
+<% } %>

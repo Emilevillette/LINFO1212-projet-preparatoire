@@ -1,59 +1,65 @@
 function page_render_options(req) {
     if (req.session.username) {
-        return {
+        retval = {
             loggedIn: true,
             username: req.session.username,
+            message: req.session.message
         }
+        req.session.message = null;
+        return retval;
     }
-    return {
+    retval = {
         loggedIn: false,
         username: "Anonyme",
+        message: req.session.message
     }
-}
+    req.session.message = null;
+    return retval;
 
-
-class PageOptions {
-    constructor() {
-        this.attributes = {};
-    }
-
-    add_message(messageCode, success, display = true) {
-        this.attributes["message"] = {
-            message: message,
-            success: success === true ? "#198754" : "#dc3545",
-            display: display ? "inline-block" : "none",
-        }
-    }
-
-    get_message(messageCode) {
-        return status_message[messageCode];
-    }
-
-    add_username(req) {
-        if (req.session.username) {
-            this.attributes["username"] = req.session.username
-        }
-    }
-
-    get_attribute(name) {
-        if (name in this.attributes) {
-            return this.attributes[name];
-        }
-        return null;
-    }
-
-    get get_attributes() {
-        return this.attributes;
-    }
 }
 
 status_message = {
-    create_ok: "Compte créé avec succès.",
-    create_fail: "Cet email est déjà utilisé.",
-    connect_ok: "Connecté avec succès.",
-    connect_not_found: "Ce compte n'existe pas.",
-    connect_password_incorrect: "Mot de passe incorrect, merci de réessayer.",
-    login_required_incident_submit: "Vous devez être connecté(e) pour signaler un incident.",
+    create_ok: {
+        message: "Compte créé avec succès.",
+        success: true
+    },
+    create_fail: {
+        message: "Cet email est déjà utilisé.",
+        success: false
+    },
+    connect_ok: {
+        message: "Connecté avec succès.",
+        success: true
+    },
+    connect_not_found: {
+        message: "Ce compte n'existe pas.",
+        success: false
+    },
+    connect_password_incorrect: {
+        message: "Mot de passe incorrect, merci de réessayer.",
+        success: false
+    },
+    login_required_incident_submit: {
+        message: "Vous devez être connecté(e) pour signaler un incident.",
+        success: false
+    },
+    incident_create_ok: {
+        message: "Incident créé avec succès.",
+        success: true
+    },
+    logout_ok: {
+        message: "successfully logged out",
+        success: true
+    }
 }
 
-module.exports = {page_render_options, PageOptions}
+class MessageClass {
+    constructor(messageCode, display = true) {
+        this.message = status_message[messageCode]["message"];
+        this.success = status_message[messageCode]["success"];
+        this.messageCode = messageCode;
+    }
+}
+
+
+module.exports = {page_render_options, MessageClass}

@@ -57,7 +57,6 @@ app.use(session({
 
 app.get('/', function (req, res) {
     res.render('pages/index.ejs', page_render_options(req));
-    req.session.message = null;
 });
 
 app.get('/get_incidents', function (req, res) {
@@ -68,7 +67,6 @@ app.get('/get_incidents', function (req, res) {
 
 app.get('/login', function (req, res) {
     res.render('pages/login.ejs', page_render_options(req));
-    req.session.message = null;
 });
 
 app.post('/login_account', urlencodedParser, function (req, res) {
@@ -100,7 +98,6 @@ app.get('/incident_input', function (req, res) {
         res.redirect("/login");
     } else {
         res.render('pages/incident_input.ejs', page_render_options(req));
-        req.session.message = null;
     }
 });
 

@@ -21,7 +21,7 @@ Feature: Logging in a user
     And the user's full name
     And the user's email address
     When the user clicks the 'register' button
-    Then the server checks if the credentials (i.e. username and email address)
+    Then the server checks if the credentials (i.e. email address) are already used
     Scenario: The new user's credentials are not already taken
       When the server replies
       Then the account is created

@@ -6,11 +6,10 @@ Feature : enter a new incident
     Given a small description of the incident
     And the address where the incident took place
     When the user clicks on the 'submit' button
-    Then the server checks if neither of the 2 boxes are empty
-    And the server adds the incident to the database
+    Then the server adds the incident to the database
 
   Scenario: User doesn't have an account
-    Then the server redirects the user to the account creation page
+    Then the server redirects the user to the account creation/login page
     When the user is logged in
     Then the user can go to the incident tab
 

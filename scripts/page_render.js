@@ -1,3 +1,6 @@
+const opening_hour = "08:30:00";
+const closing_hour = "17:30:00";
+
 /**
  * Provides ejs with the necessary templates varaibles
  *
@@ -5,27 +8,21 @@
  * @returns {*|{loggedIn: boolean, message: (null|*), username}|{loggedIn: boolean, message: (null|*), username: string}}
  */
 function page_render_options(req) {
-    if (req.session.username) {
-        retval = {
-            loggedIn: true,
-            username: req.session.username,
-            message: req.session.message
-        }
-        req.session.message = null;
-        return retval;
-    }
+    let req_time = new Date().toTimeString().split(' ')[0];
     retval = {
-        loggedIn: false,
-        username: "Anonyme",
-        message: req.session.message
+        loggedIn: !!req.session.username,
+        username: req.session.username,
+        message: req.session.message,
+        isClosed: req_time < opening_hour || req_time > closing_hour,
     }
+    console.log(closing_hour);
     req.session.message = null;
     return retval;
 
 }
 
 
-//List of all possible messages
+//Dictionary of all possible messages
 status_message = {
     create_ok: {
         message: "Compte créé avec succès.",

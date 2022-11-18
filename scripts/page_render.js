@@ -1,3 +1,9 @@
+/**
+ * Provides ejs with the necessary templates varaibles
+ *
+ * @param req the user's request
+ * @returns {*|{loggedIn: boolean, message: (null|*), username}|{loggedIn: boolean, message: (null|*), username: string}}
+ */
 function page_render_options(req) {
     if (req.session.username) {
         retval = {
@@ -18,6 +24,8 @@ function page_render_options(req) {
 
 }
 
+
+//List of all possible messages
 status_message = {
     create_ok: {
         message: "Compte créé avec succès.",
@@ -53,6 +61,9 @@ status_message = {
     }
 }
 
+/**
+ * Utility class to store a message and useful information concerning it (later rendered in a banner)
+ */
 class MessageClass {
     constructor(messageCode, display = true) {
         this.message = status_message[messageCode]["message"];

@@ -1,10 +1,10 @@
 <% if(message) { %>
-    <div class="rounded border m-3 p-2 text-light"
+    <div class="rounded border m-3 ms-4 p-2 text-light"
          style="display:inline-block; background-color: <%= message.success === true ? "#198754" : "#dc3545" %>"
          id="connection_feedback"><%= message.message %></div>
 <% } %>
 <% if(isClosed) { %>
-    <div class="rounded border mb-2 ms-3 mt-2 p-2 text-light bg-primary" style="display:inline-block;"
+    <div class="rounded border mb-1 ms-4 mt-2 me-1 p-2 text-light bg-primary" style="display:inline-block;"
          id="closed_business">Nous sommes actuellement fermés. Nos services sont ouverts du lundi au vendredi de 8:30 à
         17:30.
     </div>

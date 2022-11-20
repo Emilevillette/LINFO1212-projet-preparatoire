@@ -1,5 +1,6 @@
 const opening_hour = "08:30:00";
 const closing_hour = "17:30:00";
+const opening_days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
 
 /**
  * Provides ejs with the necessary templates varaibles
@@ -8,14 +9,16 @@ const closing_hour = "17:30:00";
  * @returns {*|{loggedIn: boolean, message: (null|*), username}|{loggedIn: boolean, message: (null|*), username: string}}
  */
 function page_render_options(req) {
-    let req_time = new Date().toTimeString().split(' ')[0];
+    let req_date = new Date();
+    let req_time = req_date.toTimeString().split(' ')[0];
+    req_date = req_date.getDay();
     retval = {
+        //!! => not a falsy object
         loggedIn: !!req.session.username,
         username: req.session.username,
         message: req.session.message,
-        isClosed: req_time < opening_hour || req_time > closing_hour,
+        isClosed: (req_time < opening_hour || req_time > closing_hour) || (req_date < 1 || req_date > 5),
     }
-    console.log(closing_hour);
     req.session.message = null;
     return retval;
 

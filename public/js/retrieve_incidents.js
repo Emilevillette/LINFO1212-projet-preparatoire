@@ -39,6 +39,7 @@ function get_incidents(date, search) {
 
                     cell.innerHTML = res[i][order[j]];
                     if (is_new === true) {
+                        //we have to clone the object, since there can be multiple badges
                         cell.prepend(badge.cloneNode(true));
                         is_new = false;
                     }

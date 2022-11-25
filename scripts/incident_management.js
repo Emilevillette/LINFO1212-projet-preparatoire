@@ -1,5 +1,6 @@
 const IncidentModel = require("../models/incidents");
 const {Op} = require("sequelize");
+const dayjs = require("dayjs");
 
 /**
  * Creates incident in database
@@ -27,11 +28,11 @@ async function create_incident(description, address, email) {
  * @param search the search query if provided (otherwise null/undefined)
  * @returns {Promise<Model<any, TModelAttributes>[]>}
  */
-function retrieve_incidents(date, search) {
+async function retrieve_incidents(date, search) {
     if (date && date !== "undefined") {
         let day = new Date(new Date(date).setUTCHours(0));
         let dayAfter = new Date(new Date(day).setUTCDate(new Date(day).getUTCDate() + 1))
-        return IncidentModel.findAll({
+        return query_sequelize({
             where: {
                 createdAt: {
                     [Op.between]: [day, dayAfter]
@@ -40,15 +41,25 @@ function retrieve_incidents(date, search) {
             raw: true,
         });
     } else if (search && search !== "undefined") {
-        return IncidentModel.findAll({
+        return query_sequelize({
             where: {
                 [Op.or]: [{address: search}, {description: search}]
             },
             raw: true
         })
     } else {
-        return IncidentModel.findAll({raw: true});
+        let test = await query_sequelize({raw: true});
+        return query_sequelize({raw: true});
     }
 }
+
+async function query_sequelize(options) {
+    let incidents = await IncidentModel.findAll(options)
+    for (let i = 0; i < incidents.length; i++) {
+        incidents[i]["createdAt"] = dayjs(incidents[i]["createdAt"]).toDate();
+    }
+    return incidents;
+}
+
 
 module.exports = {create_incident, retrieve_incidents};

@@ -24,6 +24,8 @@ To help you test the database, we've written a small Javascript file to populate
 
 ### Notes
 
+**We had to squash last minute bugs because of browser cross-compatibility. Please note that this project has been tested on Chromium and Firefox only.**
+
 We used `Bootstrap` for the styling.
 
 The backend runs with `nodejs`/`expressjs`. The database is the `Sequelize` ORM (with `sqlite3`). Password are hashed with the `bcrypt` library.
